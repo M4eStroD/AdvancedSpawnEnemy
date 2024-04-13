@@ -6,12 +6,12 @@ public class Enemy : MonoBehaviour
 
     public void Init(Transform target)
     {
-        _movement.SetDirection(target);
+        _movement.SetTarget(target);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Pylon>() != null)
+        if (collision.gameObject.TryGetComponent<Pylon>(out Pylon pylon))
             Destroy(gameObject);
     }
 }

@@ -4,11 +4,12 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private float _speed = 1f;
 
+    private Transform _target;
     private Vector3 _direction;
 
-    public void SetDirection(Transform target)
+    public void SetTarget(Transform target)
     {
-        _direction = (target.position - transform.position).normalized;
+        _target = target;
     }
 
     private void Update()
@@ -18,6 +19,7 @@ public class Movement : MonoBehaviour
 
     private void Move()
     {
+        _direction = (_target.position - transform.position).normalized;
         transform.Translate(_direction * _speed * Time.deltaTime);
     }
 }
